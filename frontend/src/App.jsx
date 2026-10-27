@@ -4,14 +4,16 @@ import './App.css'
 
 function App() {
   const [projects, setProjects] = useState([])
+  const [isVpnRequired, setIsVpnRequired] = useState(false);
 
-useEffect(() => {
+  useEffect(() => {
     axios.get('https://aledidik.pythonanywhere.com/api/projects/')
       .then(response => {
         setProjects(response.data);
       })
       .catch(error => {
         console.error(error);
+        setIsVpnRequired(true);
       });
   }, []);
 
@@ -29,9 +31,17 @@ useEffect(() => {
       <main>
         <section className="projects-section">
           <h2>Мои проекты</h2>
-          {projects.length === 0 ? (
+          
+          {/* Проверяем, нужна ли плашка VPN */}
+          {isVpnRequired ? (
+            <div style={{ padding: '20px', backgroundColor: '#ffeeba', color: '#856404', borderRadius: '8px', textAlign: 'center', marginTop: '20px' }}>
+              ⚠️ Сервер базы данных заблокирован вашим провайдером. Пожалуйста, включите VPN для просмотра проектов.
+            </div>
+          ) : projects.length === 0 ? (
+            // Если ошибки нет, но проектов еще нет (загрузка)
             <p>Проекты скоро появятся...</p>
           ) : (
+            // Если проекты успешно загружены
             <div className="projects-grid">
               {projects.map(project => (
                 <div key={project.id} className="project-card">
@@ -47,6 +57,7 @@ useEffect(() => {
               ))}
             </div>
           )}
+          
         </section>
       </main>
     </div>
