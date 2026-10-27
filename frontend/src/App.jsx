@@ -7,7 +7,7 @@ function App() {
   const [isVpnRequired, setIsVpnRequired] = useState(false);
 
   useEffect(() => {
-    axios.get('https://aledidik.pythonanywhere.com/api/projects/', { timeout: 10000 })
+    axios.get('https://aledidik.pythonanywhere.com/api/projects/', { timeout: 5000 })
       .then(response => {
         setProjects(response.data);
       })
