@@ -6,7 +6,7 @@ function App() {
   const [projects, setProjects] = useState([])
 
 useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/projects/')
+    axios.get('https://aledidik.pythonanywhere.com/api/projects/')
       .then(response => {
         setProjects(response.data);
       })
