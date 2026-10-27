@@ -19,7 +19,7 @@ useEffect(() => {
     <div className="portfolio-container">
       <header className="hero-section">
         <div className="hero-content">
-          <img src="/avatar.jpg" alt="Алексей Дидик" className="hero-avatar" />
+          <img src="/vizitka/avatar.jpg" alt="Алексей Дидик" className="hero-avatar" />
           <div className="hero-text">
             <h1>Алексей Дидик</h1>
             <p>Full-stack веб-разработчик | Python, JavaScript, React, Django</p>
