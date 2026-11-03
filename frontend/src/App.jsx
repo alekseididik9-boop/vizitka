@@ -27,9 +27,6 @@ const Portfolio = () => {
                 <a href="https://wa.me/79195167974" target="_blank" rel="noopener noreferrer" className="social-icon" data-tooltip="WhatsApp">
                   <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a5.8 5.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                 </a>
-                <a href="https://max.ru/u/f9LHodD0cOJVN2rXCfz8w7bMRy6kXH3isf5riI1SyhgAmRVMS1r-wgyrQI0" target="_blank" rel="noopener noreferrer" className="social-icon" data-tooltip="MAX">
-                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 2.98.97 4.29L1 23l6.71-1.97c1.31.61 2.75.97 4.29.97 5.52 0 10-4.48 10-10S17.52 2 12 2zm0 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
-                </a>
               </div>
             </>
           )}
@@ -40,7 +37,7 @@ const Portfolio = () => {
               <p>Привет! Меня зовут Алексей, я full-stack веб-разработчик. Создаю современные и отзывчивые приложения, специализируясь на связке <strong>React</strong> и <strong>Django REST Framework</strong>.</p>
               <p>В разработке я ценю системность. Мой подход — брать сложную задачу, разбивать её на логические блоки и решать пошагово. Я не боюсь трудных багов и готов кропотливо отлаживать код, настраивать серверы на Linux или ковыряться в CORS-политиках до тех пор, пока проект не заработает безупречно.</p>
               <p>В свободное время я увлекаюсь работой с нейросетями для генерации изображений и сборкой роботов (LEGO WeDo) с сыном. Это помогает мне сочетать строгую техническую логику с творческим взглядом на интерфейсы. Ну и конечно всегда в процессе обучения.</p>
-              <button className="back-btn" onClick={() => setActiveSection('home')}>← Вернуться</button>
+              <button className="back-btn" onClick={() => { setActiveSection('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>← Вернуться</button>
             </div>
           )}
 
@@ -64,7 +61,7 @@ const Portfolio = () => {
 
             
 
-              <button className="back-btn" onClick={() => setActiveSection('home')}>← Вернуться</button>
+              <button className="back-btn" onClick={() => { setActiveSection('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>← Вернуться</button>
             </div>
           )}
 
@@ -74,7 +71,7 @@ const Portfolio = () => {
               <p><strong>Frontend:</strong> JavaScript, React, HTML/CSS</p>
               <p><strong>Backend:</strong> Python, Django REST API, PostgreSQL</p>
               <p><strong>Инфраструктура:</strong> Git, Nginx, Linux VPS, развертывание на серверах</p>
-              <button className="back-btn" onClick={() => setActiveSection('home')}>← Вернуться</button>
+              <button className="back-btn" onClick={() => { setActiveSection('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>← Вернуться</button>
             </div>
           )}
 
@@ -86,17 +83,17 @@ const Portfolio = () => {
       </div>
 
       <div className="cards-section">
-        <div className="card" onClick={() => setActiveSection('about')}>
+        <div className="card" onClick={() => { setActiveSection('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
           <span className="card-number"></span>
           <h3>Обо мне</h3>
           <p></p>
         </div>
-        <div className="card" onClick={() => setActiveSection('portfolio')}>
+        <div className="card" onClick={() => { setActiveSection('portfolio'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
           <span className="card-number"></span>
           <h3>Портфолио</h3>
           <p></p>
         </div>
-        <div className="card" onClick={() => setActiveSection('skills')}>
+        <div className="card" onClick={() => { setActiveSection('skills'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
           <span className="card-number"></span>
           <h3>Навыки</h3>
           <p>Чем я могу Вам помочь</p>
