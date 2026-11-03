@@ -378,3 +378,102 @@ button.action-btn {
 .modal-close:hover {
   color: #dfc38f; /* Крестик желтеет при наведении */
 }
+
+/* =======================================
+   МОБИЛЬНАЯ ВЕРСИЯ (Экраны до 768px)
+======================================= */
+@media (max-width: 768px) {
+  html, body {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+  /* 1. Сбрасываем жесткую высоту и включаем колонку */
+  .portfolio-wrapper {
+    height: auto !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  /* 2. Текст: снимаем абсолютное позиционирование и центрируем */
+  .main-content {
+    position: relative !important;
+    top: 0 !important;
+    transform: none !important;
+    padding: 40px 20px 0 !important;
+    justify-content: center !important;
+  }
+  
+  .text-section {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .title {
+    font-size: 15vw !important;
+    margin-bottom: 15px !important;
+  }
+
+  .social-links {
+    justify-content: center !important;
+  }
+
+  /* 3. Фотография: возвращаем в общий поток */
+  .photo-section {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    margin-top: 30px !important;
+    display: flex !important;
+    justify-content: center !important;
+    z-index: 1 !important;
+  }
+
+  .profile-img {
+    transform: none !important; /* Отключаем десктопное увеличение */
+    width: 85% !important;
+    max-width: 320px !important;
+    height: auto !important;
+  }
+
+  /* 4. Карточки: выстраиваем друг под друга */
+  .cards-section {
+    position: relative !important;
+    bottom: auto !important;
+    flex-direction: column !important;
+    padding: 20px !important;
+    margin-top: 20px !important;
+    margin-bottom: 40px !important;
+    z-index: 10 !important;
+  }
+
+  .card {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 5. Инфо-блоки и модалка */
+  .info-block {
+    padding: 20px !important;
+  }
+  
+  .info-block h2 {
+    font-size: 2rem !important;
+  }
+
+  .modal-content {
+    width: 95% !important;
+    max-width: none !important;
+  }
+
+  .modal-close {
+    top: -35px !important;
+    right: 0px !important;
+  }
+}
