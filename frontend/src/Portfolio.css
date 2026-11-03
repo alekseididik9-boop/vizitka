@@ -1,0 +1,380 @@
+/* Общий экран: делаем его просто контейнером на 100% ширины и высоты */
+.portfolio-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  
+  background-color: #222330;
+  background-image: 
+    linear-gradient(rgba(34, 35, 48, 0.85), rgba(34, 35, 48, 0.85)), 
+    url('/bg-code.jpg');
+  background-size: cover;
+  background-position: center;
+  
+  overflow: hidden;
+  color: #ffffff;
+  font-family: sans-serif;
+}
+
+/* =======================================
+   1. ТЕКСТ (Центрируем слева) 
+======================================= */
+.main-content {
+  position: absolute;
+  top: 40%; 
+  transform: translateY(-50%); 
+  
+  left: 0;
+  right: 0;
+  max-width: 1200px; /* Сделали контейнер чуть шире */
+  margin: 0 auto;
+  z-index: 10;
+  padding: 0 50px;
+  
+  display: flex;
+  justify-content: flex-start; /* 👈 Жестко прижимаем текст к левому краю */
+}
+
+.text-section {
+  max-width: 600px;
+}
+
+.subtitle {
+  color: #8c8d96;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.title {
+  color: #dfc38f;
+  font-size: 4rem; /* Чуть уменьшил, чтобы точно всё влезло */
+  line-height: 1.1;
+  margin: 0 0 20px 0;
+  letter-spacing: 5px;
+}
+
+/* Иконки */
+.social-links {
+  display: flex;
+  gap: 15px; 
+  margin-top: 20px;
+}
+
+.social-icon {
+  color: #dfc38f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #dfc38f;
+  border-radius: 50%;
+  transition: all 0.3s ease; 
+  position: relative; /* 👈 ВАЖНО: Это нужно для привязки подсказки к иконке */
+}
+
+.social-icon:hover {
+  background-color: #dfc38f;
+  color: #222330;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(223, 195, 143, 0.3);
+}
+
+/* =======================================
+   СТИЛИ ДЛЯ ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ (СНИЗУ)
+======================================= */
+
+/* Сама плашка с текстом */
+.social-icon::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 65px; /* 👈 Опускаем плашку ПОД иконку */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #dfc38f;
+  color: #222330;
+  padding: 5px 12px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border-radius: 6px;
+  white-space: nowrap;
+  
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none; 
+}
+
+/* Маленький треугольник-стрелочка (теперь смотрит вверх) */
+.social-icon::before {
+  content: '';
+  position: absolute;
+  top: 53px; /* 👈 Размещаем между иконкой и плашкой */
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: #dfc38f; /* 👈 Стрелочка теперь указывает вверх */
+  
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+/* Показываем подсказку и стрелочку при наведении (этот блок без изменений) */
+.social-icon:hover::after,
+.social-icon:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* =======================================
+   2. ФОТОГРАФИЯ (Прибиваем в правый нижний угол) 
+======================================= */
+.photo-section {
+  position: absolute;
+  bottom: 0; /* Жестко к нижнему краю экрана */
+  right: 5%; /* Отступ от правого края */
+  z-index: 5; /* Фото ПОД карточками (у них индекс 10) */
+  pointer-events: none; /* Защита от перекрытия кликов */
+}
+
+.profile-img {
+  display: block; 
+  height: 90vh; /* Берем высоту с запасом */
+  width: auto;
+  filter: drop-shadow(-10px 10px 15px rgba(0, 0, 0, 0.4)); 
+  
+  /* 👈 ИСКУССТВЕННОЕ УВЕЛИЧЕНИЕ */
+  transform: scale(1.9); /* Увеличиваем фото в 1.6 раза. Можешь поставить 1.8 или 2.0, если всё еще мало! */
+  transform-origin: bottom right; /* Точка отсчета для увеличения - правый нижний угол, чтобы ноги не уехали вниз */
+}
+
+
+/* =======================================
+   3. КАРТОЧКИ (Прибиваем к низу по центру) 
+======================================= */
+.cards-section {
+  position: absolute;
+  bottom: 40px; /* Отступ от нижнего края экрана */
+  
+  left: 0;
+  right: 0;
+  max-width: 1000px;
+  margin: 0 auto;
+  
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  z-index: 10; /* Карточки ПОВЕРХ фото */
+  padding: 0 20px;
+}
+
+.card {
+  flex: 1;
+  padding: 30px;
+  color: #8c8d96;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card h3 {
+  color: #ffffff;
+  margin: 15px 0 10px;
+}
+
+.card-number {
+  font-size: 0.9rem;
+}
+
+.card:hover, .active-card {
+  background-color: rgba(241, 242, 235, 0.85); 
+  backdrop-filter: blur(5px);
+  color: #222330;
+  border-radius: 10px;
+}
+
+.card:hover h3, .active-card h3 {
+  color: #222330;
+}
+
+/* =======================================
+   4. ИНФОРМАЦИОННЫЕ БЛОКИ (По клику)
+======================================= */
+.info-block {
+  background: rgba(34, 35, 48, 0.7); /* Полупрозрачная подложка, чтобы текст читался на фоне */
+  padding: 30px 40px;
+  border-radius: 15px;
+  border-left: 4px solid #dfc38f;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.4s ease-out; /* Плавное появление */
+}
+
+.info-block h2 {
+  color: #dfc38f;
+  font-size: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.info-block p, .info-block ul {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  margin-bottom: 15px;
+}
+
+.info-block li {
+  margin-bottom: 10px;
+}
+
+.info-block strong {
+  color: #ffffff;
+}
+
+/* Кнопка возврата */
+.back-btn {
+  margin-top: 20px;
+  background-color: transparent;
+  color: #dfc38f;
+  border: 1px solid #dfc38f;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #dfc38f;
+  color: #222330;
+}
+
+/* Анимация появления контента */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* =======================================
+   5. ВНУТРЕННИЕ КАРТОЧКИ ПРОЕКТОВ (ПОРТФОЛИО)
+======================================= */
+.portfolio-block {
+  /* Ограничиваем высоту, чтобы блок не вылез за экран, если проектов будет много */
+  max-height: 75vh; 
+  overflow-y: auto; 
+}
+
+/* Красивый скроллбар для портфолио */
+.portfolio-block::-webkit-scrollbar {
+  width: 6px;
+}
+.portfolio-block::-webkit-scrollbar-thumb {
+  background: #dfc38f;
+  border-radius: 3px;
+}
+
+.project-item {
+  background: rgba(0, 0, 0, 0.25); /* Темная подложка для каждого проекта */
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 3px solid #dfc38f; /* Золотая полоска слева */
+}
+
+.project-item h3 {
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  font-size: 1.3rem;
+}
+
+.project-item p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #d1d1d1;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Расстояние между кнопками */
+}
+
+/* Стиль для новых кнопок действий */
+.action-btn {
+  display: inline-block;
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  color: #222330;
+  background-color: #dfc38f;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  background-color: #ffffff; /* При наведении становятся белыми */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(223, 195, 143, 0.4);
+}
+
+/* =======================================
+   6. МОДАЛЬНОЕ ОКНО ДЛЯ ВИДЕО
+======================================= */
+/* Сбрасываем стандартные стили кнопки, чтобы она выглядела как ссылка */
+button.action-btn {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85); /* Темный прозрачный фон */
+  backdrop-filter: blur(8px); /* Размытие сайта позади видео */
+  z-index: 1000; /* Ставим поверх всех элементов сайта */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  position: relative;
+  width: 80%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9; /* Автоматически держит пропорции видео */
+  background-color: #000;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.modal-content iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: -30px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+  color: #dfc38f; /* Крестик желтеет при наведении */
+}
