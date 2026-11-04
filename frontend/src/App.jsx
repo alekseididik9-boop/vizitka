@@ -30,6 +30,9 @@ const Portfolio = () => {
                 <a href="https://max.ru/u/f9LHodD0cOJVN2rXCfz8w7bMRy6kXH3isf5riI1SyhgAmRVMS1r-wgyrQI0" target="_blank" rel="noopener noreferrer" className="social-icon" data-tooltip="MAX">
                   <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 2.98.97 4.29L1 23l6.71-1.97c1.31.61 2.75.97 4.29.97 5.52 0 10-4.48 10-10S17.52 2 12 2zm0 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
                 </a>
+                <a href="mailto:aledidik@yandex.ru" className="social-icon" data-tooltip="Email">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </a>
               </div>
             </>
           )}
