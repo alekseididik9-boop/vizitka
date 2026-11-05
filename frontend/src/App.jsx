@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Portfolio.css';
+import ContactForm from './components/ContactForm';
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -81,6 +82,13 @@ const Portfolio = () => {
             </div>
           )}
 
+          {activeSection === 'contact' && (
+          <div className="info-block">
+            <ContactForm />
+            <button className="back-btn" onClick={() => { setActiveSection('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>← Вернуться</button>
+          </div>
+        )}
+
         </div>
       </div> 
 
@@ -103,6 +111,11 @@ const Portfolio = () => {
           <span className="card-number"></span>
           <h3>Навыки</h3>
           <p>Чем я могу Вам помочь</p>
+        </div>
+        <div className="card" onClick={() => { setActiveSection('contact'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+          <span className="card-number"></span>
+          <h3>Контакты</h3>
+          <p>Оставить заявку</p>
         </div>
       </div>
 

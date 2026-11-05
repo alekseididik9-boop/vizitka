@@ -9,4 +9,7 @@ router.register(r'projects', ProjectViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    # Подключаем пути приложения portfolio.
+    # API будет доступно по адресу http://127.0.0.1:8000/api/contact/
+    path('api/', include('portfolio.urls')),
 ]

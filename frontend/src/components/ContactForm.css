@@ -1,0 +1,80 @@
+/* Контейнер самой формы */
+.contact-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Расстояние между полями */
+    width: 100%;
+    max-width: 400px;
+    margin-top: 15px;
+}
+
+/* Группа: лэйбл + поле ввода */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    color: #e0e0e0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Общий стиль для полей ввода (input и textarea) */
+.form-input {
+    background-color: rgba(255, 255, 255, 0.05); /* Легкая прозрачность */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Еле заметная рамка */
+    border-radius: 8px; /* Скругленные углы */
+    padding: 12px 15px;
+    color: #ffffff; /* Белый текст при вводе */
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Чтобы многострочное поле не ломало дизайн */
+.textarea-input {
+    resize: vertical; /* Разрешаем тянуть только вниз */
+    min-height: 80px;
+}
+
+/* Эффект, когда вы кликнули в поле ввода (focus) */
+.form-input:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #f4c86a; /* Золотистый цвет под заголовок */
+    box-shadow: 0 0 8px rgba(244, 200, 106, 0.3); /* Легкое свечение */
+}
+
+/* Плейсхолдеры (подсказки внутри полей) */
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Стилизация кнопки "Отправить" */
+.submit-btn {
+    background-color: transparent;
+    border: 1px solid #f4c86a; /* Золотистая рамка */
+    color: #f4c86a; /* Золотистый текст */
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+/* Эффект при наведении на кнопку */
+.submit-btn:hover {
+    background-color: #f4c86a; /* Кнопка становится полностью золотой */
+    color: #1a1a1a; /* Текст становится темным */
+}
+
+/* Если кнопка заблокирована во время загрузки (опционально) */
+.submit-btn:disabled {
+    border-color: #555;
+    color: #555;
+    cursor: not-allowed;
+    background-color: transparent;
+}

@@ -2,11 +2,11 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Загружаем переменные из файла .env
-load_dotenv()
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# ЯВНО указываем путь к файлу .env
+load_dotenv(BASE_DIR / '.env')
+
 
 # Секретный ключ теперь берется из .env
 SECRET_KEY = os.getenv('SECRET_KEY')
@@ -15,12 +15,13 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 # Разрешаем доступ для локального запуска и для будущего сервера PythonAnywhere
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'aledidik.ru']
 
 # Разрешаем запросы только от твоего локального React (позже добавим сюда Vercel)
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "http://aledidik.ru",
 ]
 
 # Application definition
@@ -45,6 +46,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'portfolio.middleware.TelegramErrorNotificationMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -105,3 +107,21 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+# --- Настройки Telegram Бота ---
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+TELEGRAM_ADMIN_CHAT_ID = os.getenv('TELEGRAM_ADMIN_CHAT_ID')
+
+# Строгая проверка: если токена нет, сервер выдаст понятную ошибку и остановится
+if not TELEGRAM_BOT_TOKEN:
+    raise ValueError(
+        "\n"
+        "===========================================================\n"
+        "ОШИБКА: Токен Telegram не найден!\n"
+        f"Django ищет файл .env по пути: {BASE_DIR / '.env'}\n"
+        "Убедитесь, что:\n"
+        "1. Файл лежит именно там.\n"
+        "2. Внутри написано: TELEGRAM_BOT_TOKEN=ваш_токен (без пробелов).\n"
+        "==========================================================="
+    )
+
